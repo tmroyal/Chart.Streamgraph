@@ -1,2 +1,2 @@
 # Chart.Streamgraph
-Streamgraph plugin for Chart.js
+Streamgraph plugin for Chart.js: coming soon.
