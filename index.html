@@ -1,9 +1,390 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
 <head>
-<title>Chart.Streamgraph</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Chart.Streamgraph - a chart.js plugin</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <style>
+    .jumbotron {
+      background-color: hsl(150,50%,90%);
+    }
+    pre.scrollable {
+      overflow: auto;
+      word-wrap: normal;
+      white-space: pre;
+    }
+  </style>
 </head>
 <body>
-Streamgraph plugin for chart.js. Coming soon.
+
+<div class="jumbotron">
+  <div class="container">
+      <h1>Chart.Streamgraph</h1>
+      <h3>A Streamgraph plugin for chart.js.</h3>
+      <hr>
+      <a class="btn btn-lg btn-primary" href="https://github.com/tmroyal/Chart.Streamgraph/archive/master.zip">Download</a>
+    </div>
+</div>
+
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Introduction</h3>
+      <p>This plugin enhances <a href="http://chartjs.org">chart.js</a> to enable the creation of <a href="http://leebyron.com/streamgraph/">Streamgraphs</a>. Invented by <a href="http://leebyron.com">Lee Byron</a> and <a href="http://www.bewitched.com/">Martin Wattenberg</a>, Streamgraphs are similar to stacked area charts with the exception that data regions do not overlap. Rather, Streamgraph regions are placed on top of one another, creating a shape that highlights the aggregate sum of all data points. While Streamgraphs do not present data with utmost clarity, they can be a cool way to present large, time-evolving data sets.</p>
+    </div>
+    <div class="col-md-6">
+      <h3>Sample</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Installation Instructions</h3>
+      <h5>Requirements</h5>
+      <p>This plugin requires <a href="http://chartjs.org">chart.js</a></p>
+      <h5>Bower</h5>
+      <p>The <a href="http://bower.io">Bower</a> package includes chart.js.</p>
+      <pre>bower install Chart.Streamgraph --save</pre>
+      <h5>NPM</h5>
+      <p>The <a href="https://www.npmjs.com/">NPM</a> package includes chart.js.</p>
+      <pre>npm install Chart.Streamgraph --save-dev</pre>
+      <p>Chart.Streamgraph may be downloaded here: 
+        <a href="https://github.com/tmroyal/Chart.Streamgraph/archive/master.zip">Download</a>
+      </p>
+      <p>You may also view the repository directly at 
+        <a href="https://github.com/tmroyal/Chart.Streamgraph/">GitHub</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Example Usage</h3>
+      <h5>HTML</h5>
+      <pre class="scrollable">&lt;script src="Chart.js"&gt;&lt;/script&gt;
+&lt;script src="Chart.Streamgraph.js"&gt;&lt;/script&gt;
+
+...
+
+&lt;canvas id="streamgraph" width="800" height="400"&gt;&lt;/canvas&gt;
+      </pre>
+      <h5>Javascript</h5>
+      <pre class="scrollable">var ctx = document.getElementById('streamgraph').getContext('2d');
+var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Data Structure</h3>
+      <pre class="scrollable">var data = {
+  labels = ['January','February','March','April','May'],
+  datasets = [
+    {
+      label: 'Dataset 1',
+      fillColor: 'rgba(255,0,0,0.5)', // optional
+      hoverColor: 'rgba(255,128,128,0.5)', // optional
+      textColor: 'rgba(255,255,255,0.2)', // optional
+      textPlacementIndex: 2, // optional
+      data: [2, 4, 6, 8, 10]
+    },
+    {
+      label: 'Dataset 2',
+      fillColor: 'rgba(0,255,0,0.5)', // optional
+      hoverColor: 'rgba(128,255,128,0.5)', // optional
+      textColor: 'rgba(0,0,0,0.2)', // optional
+      textPlacementIndex: 4,
+      data: [1, 2, 3, 4, 5]
+    },
+  ];
+};</pre>
+      <p>
+        The data structure should include labels for the y-axis, as well as 
+        an array of datasets, each including data and a corresponding label.
+        Optionally, fill color, highlight color, text color, text size, and a text placement 
+        index (see below) may be provided. (Colors must be provided on every 
+        set of data in order to override the defaults.) The text placement index allows 
+        for the somewhat precise placement of text (see below).
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Options</h3>
+      <p>
+      In addition to the <a href="http://www.chartjs.org/docs/#getting-started-global-chart-configuration">
+      global chart configuration options</a> provided by chart.js, the following options are configurable in
+      Chart.Streamgraph. (Note that some options are overridden when specified in individual
+      datasets.)
+      </p>
+      <pre class="scrollable">
+// boolean - whether the data sets are outlined.
+stroke: true,
+
+// Number - width of the outline stroke.
+strokeWidth: 2,
+
+// String - the outline stroke color.
+strokeColor: rgb(255,255,255),
+
+// Boolean - whether grid lines are shown across the chart.
+scaleShowGridLines: true,
+
+// String - color of the grid lines.
+scaleGridLineColor: "rgba(0,0,0,.5)",
+
+// Number - width of the grid lines.
+scaleGridLineWidth: 1,
+
+// Boolean - whether to show horizontal lines (except X axis).
+scaleShowHorizontalLines: true,
+
+// Boolean - whether to show vertical lines (except Y axis).
+scaleShowVerticalLines: true,
+
+// Boolean - whether the line is curved between points.
+curve: true,
+
+// Number - tension of the curve between points.
+curveTension: 0.4,
+
+// String - "gradient", "pallete", "cycle" which determinines
+// the way colors are generated. Ignored if colors are specified within
+// the datasets. See below.
+colorInterpolation: "gradient",
+
+// Array[String] - the colors used for the active color scheme.
+// Any number of colors is allowed.
+colors: ["blue","black","rgba(255,255,0,0.5)"],
+
+// Boolean - whether streams change color on hover.
+colorHighlight: true, 
+
+// Number - a floating point value which specifies how much lighter or
+// darker a color becomes when hovered, where 1 is no change, 
+// 0.9 is slightly darker, and 1.1 is slightly lighter.
+colorHighlightMultiplier: 1.1,
+
+// String - "verticalPosition", "sum", "maxHeight"
+// The method in which colors are assigned to 
+// each dataset. See below.
+colorAssignmentMethod: "verticalPosition",
+
+// Boolean or Number - Whether label has a fixed size,
+// and if so, what point size is it. False if labels
+// are adaptable size.
+labelFixedSize: 15,
+
+// Number - the minimum size of the label. When variable label 
+// sizes are enabled using the labelFixedSize: all 
+// labels smaller than this size are not renderend. A value of 
+// 0 turns this feature off.
+labelMinimumSize: 14,
+
+// String - label font family
+labelFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+
+// String - label font style
+labelFontStyle: "normal",
+
+// String - label font color. Can be overwritten manually in dataset.
+labelFontColor: "rgba(255,255,255,0.8)",
+
+// String - "ideal","idealThenMaxHeight", "maxHeight". 
+// Label placement method. Can be overwitten manually in 
+// dataset. See below.
+labelPlacementMethod: "ideal"</pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Color Schemes</h3>
+      <p>
+      Colors may be specified manually for each dataset, or they may be assigned automatically.
+      With automatic color assignment, the manner in which colors are assigned to datasets is
+      specified using two parameters: <code>colorAssignmentMethod</code> and <code>colorInterpolation</code>.  
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>colorAssignmentMethod</h5>
+    <p>
+    The <code>colorAssignmentMethod</code> parameter determines which feature of the data controls the assignment of color.
+    Possible string values for this paramter include <code>"verticalPosition"</code>, <code>"sum"</code>, and <code>"maxHeight"</code>.
+    </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><code>"verticalPosition"</code> &mdash; colors are assigned from top to bottom.</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><code>"sum"</code> &mdash; colors are assigned in order of the smallest total sum of data to the largest</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><code>"maxHeight"</code> &mdash; colors are assigned in order of the smallest maximum data point to the largest</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>colorInterpolation</h5>
+      <p>The <code>colorInterpolation</code> parameter determines how to expand a set of colors into 
+      a larger set of data. Possible string values for this parameter include <code>"gradient"</code>, <code>"pallete"</code>, and <code>"cycle".</code>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><code>"gradient"</code> &mdash; a gradient is created from the provided colors.</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><code>"pallete"</code> &mdash; similar to gradient, but without interpolation between colors.</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><code>"cycle"</code> &mdash; cycle through the provided colors.</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Label Placement</h3>
+      <p>Labels for data may either be placed manually by specifying a position within each dataset, or automatically
+      by providing a string value to the <code>labelPlacementMethod</code> parameter.   </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Manual Placement</h5>
+      <p>When a number is provided to the <code>textPlacementIndex</code> parameter for each dataset, 
+      the corresponding label will be placed at the same place as the corresponding data location at the specified index.</p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>labelPlacementMethod: "ideal"</h5>
+      <p>Chart.Streamgraph contains two types of automatic label placement algorithms. One of them, 
+      specified using the <code>"ideal"</code> keyword, attempts to find an ideal location by measuring 
+      the height of the stream and seeing if text that height will fit within the stream. It finds the 
+      location that would support the largest label size. If there are no places that a label will fit, 
+      the label is not placed on the stream.
+     </p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>labelPlacementMethod: "maxHeight"</h5>
+      <p>
+      The other label placement algorithm, specified by <code>"maxHeight"</code>, simply places the label at the tallest point on the graph. The 
+      label size is generated based on the height at the tallest point.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>labelPlacementMethod: "idealThenMaxHeight"</h5>
+      <p>
+      The <code>"ideal"</code> placement method can fail to find an appropriate label location. The 
+      parameter value <code>"idealThenMaxHeight"</code> allows the <code>"ideal"</code> algorithm to fall 
+      back to the <code>"maxHeight"</code> algorithm when no suitable label placement is determined.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>labelMinimumSize</h5>
+      <p>
+      When a number larger than zero is attached to the <code>labelMinimumSize</code> parameter, 
+      any label whose size is smaller than the one specified is not included in the graph.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <h1>
+        Demo
+      </h1>
+    </div>
+  </div>
+
+</div>
+
 </body>
 </html>
