@@ -1,7 +1,7 @@
 {
   "name": "Chart.Streamgraph",
   "main": "dst/Chart.Streamgraph.js",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "homepage": "https://github.com/tmroyal/Chart.Streamgraph",
   "authors": [
     "Thomas Royal <thomas.m.royal@gmail.com>"
