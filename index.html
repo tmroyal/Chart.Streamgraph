@@ -22,19 +22,17 @@
 <div class="jumbotron">
   <div class="container">
       <h1>Chart.Streamgraph</h1>
-      <h3>A Streamgraph plugin for chart.js.</h3>
+      <h3>A Streamgraph library and plug-in using chart.js.</h3>
       <hr>
       <a class="btn btn-lg btn-primary" href="https://github.com/tmroyal/Chart.Streamgraph/archive/master.zip">Download</a>
     </div>
 </div>
 
 <div class="container">
-
-
   <div class="row">
     <div class="col-md-6">
       <h3>Introduction</h3>
-      <p>This plugin enhances <a href="http://chartjs.org">chart.js</a> to enable the creation of <a href="http://leebyron.com/streamgraph/">Streamgraphs</a>. Invented by <a href="http://leebyron.com">Lee Byron</a> and <a href="http://www.bewitched.com/">Martin Wattenberg</a>, Streamgraphs are similar to stacked area charts with the exception that data regions do not overlap. Rather, Streamgraph regions are placed on top of one another, creating a shape that highlights the aggregate sum of all data points. While Streamgraphs do not present data with utmost clarity, they can be a cool way to present large, time-evolving data sets.</p>
+      <p>This plug-in enhances <a href="http://chartjs.org">chart.js</a> to enable the creation of <a href="http://leebyron.com/streamgraph/">Streamgraphs</a>. Invented by <a href="http://leebyron.com">Lee Byron</a> and <a href="http://www.bewitched.com/">Martin Wattenberg</a>, Streamgraphs are similar to stacked area charts with the exception that data regions do not overlap. Rather, Streamgraph regions are placed on top of one another, creating a shape that highlights the aggregate sum of all data points. While Streamgraphs do not present data with utmost clarity, they can be a cool way to present time-evolving data sets.</p>
     </div>
     <div class="col-md-6">
       <h3>Sample</h3>
@@ -45,7 +43,7 @@
     <div class="col-md-8 col-md-offset-2">
       <h3>Installation Instructions</h3>
       <h5>Requirements</h5>
-      <p>This plugin requires <a href="http://chartjs.org">chart.js</a></p>
+      <p>This plug-in requires <a href="http://chartjs.org">chart.js</a></p>
       <h5>Bower</h5>
       <p>The <a href="http://bower.io">Bower</a> package includes chart.js.</p>
       <pre>bower install Chart.Streamgraph --save</pre>
@@ -89,7 +87,6 @@ var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
       fillColor: 'rgba(255,0,0,0.5)', // optional
       hoverColor: 'rgba(255,128,128,0.5)', // optional
       textColor: 'rgba(255,255,255,0.2)', // optional
-      textPlacementIndex: 2, // optional
       data: [2, 4, 6, 8, 10]
     },
     {
@@ -97,7 +94,6 @@ var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
       fillColor: 'rgba(0,255,0,0.5)', // optional
       hoverColor: 'rgba(128,255,128,0.5)', // optional
       textColor: 'rgba(0,0,0,0.2)', // optional
-      textPlacementIndex: 4,
       data: [1, 2, 3, 4, 5]
     },
   ];
@@ -106,8 +102,7 @@ var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
         The data structure should include labels for the y-axis, as well as 
         an array of datasets, each including data and a corresponding label.
         Optionally, fill color, highlight color, text color, text size, and a text placement 
-        index (see below) may be provided. (Colors must be provided on every 
-        set of data in order to override the defaults.) The text placement index allows 
+        index (see below) may be provided. The text placement index allows 
         for the somewhat precise placement of text (see below).
       </p>
     </div>
@@ -123,6 +118,9 @@ var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
       datasets.)
       </p>
       <pre class="scrollable">
+// string - background color for graph
+backgroundColor: '#fff',
+
 // boolean - whether the data sets are outlined.
 stroke: true,
 
@@ -130,7 +128,7 @@ stroke: true,
 strokeWidth: 2,
 
 // String - the outline stroke color.
-strokeColor: rgb(255,255,255),
+strokeColor: "rgb(255,255,255)",
 
 // Boolean - whether grid lines are shown across the chart.
 scaleShowGridLines: true,
@@ -147,6 +145,9 @@ scaleShowHorizontalLines: true,
 // Boolean - whether to show vertical lines (except Y axis).
 scaleShowVerticalLines: true,
 
+// Number - number of scale divisions
+scaleDivisions: 4,
+
 // Boolean - whether the line is curved between points.
 curve: true,
 
@@ -154,8 +155,8 @@ curve: true,
 curveTension: 0.4,
 
 // String - "gradient", "pallete", "cycle" which determinines
-// the way colors are generated. Ignored if colors are specified within
-// the datasets. See below.
+// the way colors are generated. Ignored if color is within
+// the dataset. See below.
 colorInterpolation: "gradient",
 
 // Array[String] - the colors used for the active color scheme.
@@ -174,6 +175,9 @@ colorHighlightMultiplier: 1.1,
 // The method in which colors are assigned to 
 // each dataset. See below.
 colorAssignmentMethod: "verticalPosition",
+
+// Boolean - Whether to draw labels
+labels: true, 
 
 // Boolean or Number - Whether label has a fixed size,
 // and if so, what point size is it. False if labels
@@ -218,7 +222,7 @@ labelPlacementMethod: "ideal"</pre>
       <h5>colorAssignmentMethod</h5>
     <p>
     The <code>colorAssignmentMethod</code> parameter determines which feature of the data controls the assignment of color.
-    Possible string values for this paramter include <code>"verticalPosition"</code>, <code>"sum"</code>, and <code>"maxHeight"</code>.
+    Possible string values for this parameter include <code>"verticalPosition"</code>, <code>"sum"</code>, and <code>"maxHeight"</code>.
     </p>
     </div>
   </div>
@@ -260,7 +264,7 @@ labelPlacementMethod: "ideal"</pre>
     <div class="col-md-6">
       <h5>colorInterpolation</h5>
       <p>The <code>colorInterpolation</code> parameter determines how to expand a set of colors into 
-      a larger set of data. Possible string values for this parameter include <code>"gradient"</code>, <code>"pallete"</code>, and <code>"cycle".</code>
+      a larger set of data. Possible string values for this parameter include <code>"gradient"</code>, <code>"palette"</code>, and <code>"cycle".</code>
     </div>
   </div>
 
@@ -277,7 +281,7 @@ labelPlacementMethod: "ideal"</pre>
 
   <div class="row">
     <div class="col-md-6">
-      <p><code>"pallete"</code> &mdash; similar to gradient, but without interpolation between colors.</p>
+      <p><code>"palette"</code> &mdash; similar to gradient, but without interpolation between colors.</p>
     </div>
     <div class="col-md-6">
       <h1>
@@ -341,8 +345,8 @@ labelPlacementMethod: "ideal"</pre>
     <div class="col-md-6">
       <h5>labelPlacementMethod: "maxHeight"</h5>
       <p>
-      The other label placement algorithm, specified by <code>"maxHeight"</code>, simply places the label at the tallest point on the graph. The 
-      label size is generated based on the height at the tallest point.
+      The other label placement algorithm, specified by <code>"maxHeight"</code>, simply places the label at the tallest 
+      point on the graph. The label size is generated based on the height at the tallest point.
       </p>
     </div>
     <div class="col-md-6">
