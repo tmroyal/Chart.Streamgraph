@@ -1,3 +1,5 @@
+// CSS COLOR PARSER CODE
+//
 // (c) Dean McNamee <dean@gmail.com>, 2012.
 //
 // https://github.com/deanm/css-color-parser-js

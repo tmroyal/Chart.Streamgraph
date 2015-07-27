@@ -10,7 +10,13 @@
   },
   "scripts": {
     "test": "echo \"No tests specified \n\" && exit 0",
-    "lint": "jshint Chart.Streamgraph.js"
+    "lint": "jshint Chart.Streamgraph.js",
+    "concat:plugin": "cat csscolorparser.js Chart.Streamgraph.js > dst/Chart.Streamgraph.js",
+    "concat:standalone": "cat node_modules/chart.js/Chart.js csscolorparser.js Chart.Streamgraph.js > dst/Chart.Streamgraph.S.js",
+    "build:plugin": "npm run concat:plugin && uglifyjs dst/Chart.Streamgraph.js > dst/Chart.Streamgraph.min.js",
+    "build:standalone": "npm run concat:standalone && uglifyjs dst/Chart.Streamgraph.S.js > dst/Chart.Streamgraph.S.min.js",
+    "build": "npm run build:plugin & npm run build:standalone",
+    "clean": "rm -r dst/*"
   },
   "repository": {
     "type": "git",
