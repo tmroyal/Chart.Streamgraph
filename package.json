@@ -4,7 +4,8 @@
   "description": "A Streamgraph plug-in for chart.js",
   "main": "Chart.Streamgraph.js",
   "scripts": {
-    "test": "echo \"No tests specified \n\" && exit 0"
+    "test": "echo \"No tests specified \n\" && exit 0",
+    "lint": "jshint **.js"
   },
   "repository": {
     "type": "git",
