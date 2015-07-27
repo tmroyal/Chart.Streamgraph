@@ -1,0 +1,25 @@
+{
+  "name": "Chart.Streamgraph",
+  "main": "Chart.Streamgraph.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tmroyal/Chart.Streamgraph",
+  "authors": [
+    "Thomas Royal <thomas.m.royal@gmail.com>"
+  ],
+  "description": "Streamgraph plugin for Chart.js",
+  "keywords": [
+    "chart.js",
+    "streamgraph"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Chart.js": "~1.0.2"
+  }
+}
