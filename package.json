@@ -4,8 +4,8 @@
   "description": "A Streamgraph plug-in for chart.js",
   "main": "Chart.Streamgraph.js",
   "devDependencies": {
+    "chart.js": "^1.0.2",
     "jshint": "latest"
-
   },
   "scripts": {
     "test": "echo \"No tests specified \n\" && exit 0",
