@@ -1,0 +1,23 @@
+{
+  "name": "Chart.Streamgraph",
+  "version": "0.0.1",
+  "description": "A Streamgraph plug-in for chart.js",
+  "main": "Chart.Streamgraph.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tmroyal/Chart.Streamgraph.git"
+  },
+  "keywords": [
+    "chart.js",
+    "streamgraph"
+  ],
+  "author": "Thomas Royal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmroyal/Chart.Streamgraph/issues"
+  },
+  "homepage": "https://github.com/tmroyal/Chart.Streamgraph"
+}
