@@ -1,5 +1,5 @@
 {
-  "name": "Chart.Streamgraph",
+  "name": "Chart.Streamgraph.js",
   "version": "0.0.1-alpha",
   "description": "A Streamgraph library and plug-in for chart.js",
   "main": "Chart.Streamgraph.js",
