@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A Streamgraph plug-in for chart.js",
   "main": "Chart.Streamgraph.js",
+  "devDependencies": {
+    "jshint": "latest"
+
+  },
   "scripts": {
     "test": "echo \"No tests specified \n\" && exit 0",
     "lint": "jshint Chart.Streamgraph.js"
