@@ -20,7 +20,7 @@ Documentation is available [here](http://tmroyal.github.io/Chart.Streamgraph/).
 ### Github
 
 The built distributions are also available in the dst folder in 
-the source repository at (Github)[https://github.com/tmroyal/Chart.Streamgraph].
+the source repository at [Github](https://github.com/tmroyal/Chart.Streamgraph).
 
 ## Usage
 
