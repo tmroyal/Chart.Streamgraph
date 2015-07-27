@@ -15,7 +15,7 @@ Documentation is available [here](http://tmroyal.github.io/Chart.Streamgraph/).
 
 ### NPM
 
-`npm install Chart.Streamgraph.js`
+`npm install chart.streamgraph.js`
 
 ### Github
 
