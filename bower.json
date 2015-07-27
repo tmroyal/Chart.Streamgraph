@@ -6,7 +6,7 @@
   "authors": [
     "Thomas Royal <thomas.m.royal@gmail.com>"
   ],
-  "description": "Streamgraph plugin for Chart.js",
+  "description": "Streamgraph library and plugin using Chart.js",
   "keywords": [
     "chart.js",
     "streamgraph"

@@ -1,7 +1,7 @@
 {
   "name": "Chart.Streamgraph",
   "version": "0.0.1",
-  "description": "A Streamgraph plug-in for chart.js",
+  "description": "A Streamgraph library and plug-in for chart.js",
   "main": "Chart.Streamgraph.js",
   "devDependencies": {
     "chart.js": "^1.0.2",
