@@ -32,7 +32,7 @@
     });
 
     return layer;
-  };
+  }
 
   function generateLayers(datasets){
     var layers = [];
@@ -101,7 +101,7 @@
       baseline.push(currentValue);
     }
     return baseline;
-  };
+  }
 
   function applyBaseline(layers, baseline){
     var currentBaseline = baseline.slice();
@@ -165,9 +165,9 @@
 
 
   function addControlPoints(points, tension){
-    if (!tension){ tension = 0.5;}
+    if (!tension){ tension = 0.5; }
     if (tension <= 0){ tension = 0.00001; }
-    if (tension > 1){ tension = 1};
+    if (tension > 1){ tension = 1; }
 
     var scaler = -6/(tension-1);
 
@@ -183,6 +183,8 @@
     var points = layer.points = getDrawPoints(layer.data, scale);
     var drawOnset, current;
 
+    var i;
+
     drawOnset = layer.onset > 0 ? layer.onset - 1 : 0;
     current = points[drawOnset].top;
 
@@ -195,7 +197,7 @@
       // add control points to drawing points
       addControlPoints(points, options.curveTension);
 
-      for (var i = drawOnset + 1; i < points.length; i++){
+      for (i = drawOnset + 1; i < points.length; i++){
         current = points[i].top;
         ctx.bezierCurveTo(
             current.ctlPoints.p1.x,
@@ -210,7 +212,7 @@
       current = points[points.length - 1].bottom;
       ctx.lineTo(current.x, current.y);
 
-      for (var i = points.length - 2; i >=drawOnset; i--){
+      for (i = points.length - 2; i >=drawOnset; i--){
         current = points[i].bottom;
         ctx.bezierCurveTo(
             current.ctlPoints.p1.x,
@@ -225,11 +227,11 @@
     // straight line streamgraph
     } else {
 
-      for(var i = drawOnset+1; i < points.length; i++){
+      for(i = drawOnset+1; i < points.length; i++){
         current = points[i].top;
         ctx.lineTo(current.x, current.y);
       }
-      for(var i = points.length - 1; i >= drawOnset; i--){
+      for(i = points.length - 1; i >= drawOnset; i--){
         current = points[i].bottom;
         ctx.lineTo(current.x, current.y);
       }
@@ -248,7 +250,7 @@
     }
     ctx.fill();
 
-  };
+  }
 
   function drawLabel(layer, context, scale, options){
     var labelLoc;
@@ -382,7 +384,7 @@
         drawLabel(layer, ctx, scale, options);
       });
     }
-  };
+  }
 
   // color functions
 
@@ -427,7 +429,7 @@
       g:  interp(colors[iIndex][1], colors[iIndex1][1], iv),
       b:  interp(colors[iIndex][2], colors[iIndex1][2], iv),
       a:  interp(colors[iIndex][3], colors[iIndex1][3], iv)
-    }
+    };
   }
 
   function getIndexedColor(colors, i, scaleFactor){
@@ -437,7 +439,7 @@
       g: colors[index][1],
       b: colors[index][2],
       a: colors[index][3],
-    }
+    };
   }
 
   function getCycledColor(colors, i){
@@ -447,7 +449,7 @@
       g: colors[index][1],
       b: colors[index][2],
       a: colors[index][3],
-    }
+    };
   }
 
   function getScaledColor(val, scale){
@@ -526,8 +528,8 @@
         var xi = points[i].x, yi = points[i].y;
         var xj = points[j].x, yj = points[j].y;
         
-        var intersect = ((yi > y) !== (yj > y))
-            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        var intersect = ((yi > y) !== (yj > y)) && 
+          (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
         if (intersect) inside = !inside;
     }
     return inside;
@@ -777,7 +779,7 @@
 				calculateYRange : function(){
           var minMax = findMaxAndMin(self.layers);
           var value = Math.floor(Math.max(Math.abs(minMax.min), Math.abs(minMax.max))*1.5);
-          var minMax = {min: value, max: -value};
+          minMax = {min: value, max: -value};
           var range = minMax.max-minMax.min;
           helpers.extend(this, minMax);
           helpers.extend(this, {steps: options.scaleDivisions, stepValue: range/options.scaleDivisions});

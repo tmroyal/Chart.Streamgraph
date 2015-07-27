@@ -5,7 +5,7 @@
   "main": "Chart.Streamgraph.js",
   "scripts": {
     "test": "echo \"No tests specified \n\" && exit 0",
-    "lint": "jshint **.js"
+    "lint": "jshint Chart.Streamgraph.js"
   },
   "repository": {
     "type": "git",

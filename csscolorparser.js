@@ -98,7 +98,8 @@ var cssColorParser = function(){
     "tomato": [255,99,71,1], "turquoise": [64,224,208,1],
     "violet": [238,130,238,1], "wheat": [245,222,179,1],
     "white": [255,255,255,1], "whitesmoke": [245,245,245,1],
-    "yellow": [255,255,0,1], "yellowgreen": [154,205,50,1]}
+    "yellow": [255,255,0,1], "yellowgreen": [154,205,50,1]
+  }
 
   function clamp_css_byte(i) {  // Clamp to integer 0 .. 255.
     i = Math.round(i);  // Seems to be what Chrome does (vs truncation).
