@@ -16,8 +16,6 @@
       white-space: pre;
     }
     canvas {
-      width: 100%
-      height: auto
     }
   </style>
 </head>
@@ -28,7 +26,7 @@
       <h1>Chart.Streamgraph</h1>
       <h3>A Streamgraph library and plug-in using Chart.js.</h3>
       <hr>
-      <a class="btn btn-lg btn-primary" href="https://github.com/tmroyal/Chart.Streamgraph/archive/v0.0.1-alpha.zip">Download</a>
+      <a class="btn btn-lg btn-primary" href="https://github.com/tmroyal/Chart.Streamgraph/archive/v0.0.2-alpha.zip">Download</a>
     </div>
 </div>
 
@@ -47,16 +45,15 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h3>Installation Instructions</h3>
-      <h5>Requirements</h5>
-      <p>This plug-in requires <a href="http://chartjs.org">Chart.js</a></p>
       <h5>Bower</h5>
       <p>The <a href="http://bower.io">Bower</a> package includes Chart.js.</p>
       <pre>bower install Chart.Streamgraph.js</pre>
       <h5>NPM</h5>
       <p>The <a href="https://www.npmjs.com/">NPM</a> package includes Chart.js.</p>
       <pre>npm install chart.streamgraph.js</pre>
+      <h5>Other</h5>
       <p>Chart.Streamgraph may be downloaded here: 
-        <a href="https://github.com/tmroyal/Chart.Streamgraph/archive/v0.0.1-alpha.zip">Download</a>
+        <a href="https://github.com/tmroyal/Chart.Streamgraph/archive/v0.0.2-alpha.zip">Download</a>
       </p>
       <p>You may also view the repository directly at 
         <a href="https://github.com/tmroyal/Chart.Streamgraph/">GitHub</a>
@@ -66,18 +63,28 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h3>Example Usage</h3>
-      <h5>HTML</h5>
-      <pre class="scrollable">&lt;script src="Chart.js"&gt;&lt;/script&gt;
-&lt;script src="Chart.Streamgraph.js"&gt;&lt;/script&gt;
+      <h3>Usage</h3>
+      <p>Chart.Streamgraph comes with both a standalone and plug-in version, with an <code>S</code> in the
+      filename of the Standalone version to distinguish it. Be sure to use the version of Chart.Streamgraph.js
+      the is in the <code>dist/</code> of the original repo.</p>
+      <h5>Javascript</h5>
+      <pre class="scrollable">var ctx = document.getElementById('streamgraph').getContext('2d');
+var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
+      <h5>Example Standalone HTML</h5>
+      <pre clas="scrollable">&lt;script src="dst/Chart.Streamgraph.S.js"&gt;&lt;/script&gt;
+
+...
+      
+&lt;canvas id="streamgraph" width="800" height="400"&gt;&lt;/canvas&gt;
+      </pre>
+      <h5>Example Plugin HTML</h5>
+      <pre class="scrollable">&lt;script src="Chart.Core.js"&gt;&lt;/script&gt;
+&lt;script src="dst/Chart.Streamgraph.js"&gt;&lt;/script&gt;
 
 ...
 
 &lt;canvas id="streamgraph" width="800" height="400"&gt;&lt;/canvas&gt;
       </pre>
-      <h5>Javascript</h5>
-      <pre class="scrollable">var ctx = document.getElementById('streamgraph').getContext('2d');
-var newChart = new Chart(ctx).Streamgraph(data, options);</pre>
     </div>
   </div>
 
@@ -159,7 +166,7 @@ curve: true,
 // Number - tension of the curve between points.
 curveTension: 0.4,
 
-// String - "gradient", "pallete", "cycle" which determinines
+// String - "gradient", "palete", "cycle" which determinines
 // the way colors are generated. Ignored if color is within
 // the dataset. See below.
 colorInterpolation: "gradient",
@@ -234,12 +241,10 @@ labelPlacementMethod: "ideal"</pre>
 
   <div class="row">
     <div class="col-md-6">
-      <p><code>"verticalPosition"</code> &mdash; colors are assigned from top to bottom.</p>
+      <p><code>"verticalPosition"</code> &mdash; colors are assigned from bottom to the top.</p>
     </div>
     <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+      <canvas id="verticalPositionChart"></canvas>
     </div>
   </div>
 
@@ -248,9 +253,7 @@ labelPlacementMethod: "ideal"</pre>
       <p><code>"sum"</code> &mdash; colors are assigned in order of the smallest total sum of data to the largest</p>
     </div>
     <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+      <canvas id="sumChart"></canvas>
     </div>
   </div>
 
@@ -259,9 +262,7 @@ labelPlacementMethod: "ideal"</pre>
       <p><code>"maxHeight"</code> &mdash; colors are assigned in order of the smallest maximum data point to the largest</p>
     </div>
     <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+      <canvas id="maxHeightChart"></canvas>
     </div>
   </div>
 
@@ -278,20 +279,17 @@ labelPlacementMethod: "ideal"</pre>
       <p><code>"gradient"</code> &mdash; a gradient is created from the provided colors.</p>
     </div>
     <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+      <canvas id="gradientChart"></canvas>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <p><code>"palette"</code> &mdash; similar to gradient, but without interpolation between colors.</p>
+      <p><code>"palette"</code> &mdash; similar to gradient, but without interpolation between colors. Works best with
+      multiple provided colors, or a provided stroke.</p>
     </div>
     <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+      <canvas id="paletteChart"></canvas>
     </div>
   </div>
 
@@ -300,16 +298,14 @@ labelPlacementMethod: "ideal"</pre>
       <p><code>"cycle"</code> &mdash; cycle through the provided colors.</p>
     </div>
     <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+      <canvas id="cycleChart"></canvas>
     </div>
   </div>
 
 
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
       <h3>Label Placement</h3>
       <p>Labels for data may either be placed manually by specifying a position within each dataset, or automatically
       by providing a string value to the <code>labelPlacementMethod</code> parameter.   </p>
@@ -317,20 +313,7 @@ labelPlacementMethod: "ideal"</pre>
   </div>
 
   <div class="row">
-    <div class="col-md-6">
-      <h5>Manual Placement</h5>
-      <p>When a number is provided to the <code>textPlacementIndex</code> parameter for each dataset, 
-      the corresponding label will be placed at the same place as the corresponding data location at the specified index.</p>
-    </div>
-    <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
       <h5>labelPlacementMethod: "ideal"</h5>
       <p>Chart.Streamgraph contains two types of automatic label placement algorithms. One of them, 
       specified using the <code>"ideal"</code> keyword, attempts to find an ideal location by measuring 
@@ -339,30 +322,33 @@ labelPlacementMethod: "ideal"</pre>
       the label is not placed on the stream.
      </p>
     </div>
-    <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <canvas id="idealChart"></canvas>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
       <h5>labelPlacementMethod: "maxHeight"</h5>
       <p>
       The other label placement algorithm, specified by <code>"maxHeight"</code>, simply places the label at the tallest 
       point on the graph. The label size is generated based on the height at the tallest point.
       </p>
     </div>
-    <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
-    </div>
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10 col-md-offset-1">
+      <canvas id="placementMaxHeightChart"></canvas>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
       <h5>labelPlacementMethod: "idealThenMaxHeight"</h5>
       <p>
       The <code>"ideal"</code> placement method can fail to find an appropriate label location. The 
@@ -370,38 +356,40 @@ labelPlacementMethod: "ideal"</pre>
       back to the <code>"maxHeight"</code> algorithm when no suitable label placement is determined.
       </p>
     </div>
-    <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <canvas id="idealMaxHeightChart"></canvas>
     </div>
   </div>
 
-
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
       <h5>labelMinimumSize</h5>
       <p>
       When a number larger than zero is attached to the <code>labelMinimumSize</code> parameter, 
-      any label whose size is smaller than the one specified is not included in the graph.
+      any label whose size is smaller than the one specified is not included in the graph. When
+      no paramter is given, it defaults to 12.
       </p>
     </div>
-    <div class="col-md-6">
-      <h1>
-        Demo
-      </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      DEMO
     </div>
   </div>
 
 </div>
-<script src='Chart.Streamgraph.S.js'></script>
+<script src='Chart.Streamgraph.S.min.js'></script>
 <script>
 (function(){
   function clone(obj){
     return JSON.parse(JSON.stringify(obj));
   }
 
-  function getElementIdContext(elementId){
+  function ctx(elementId){
     return document.getElementById(elementId).getContext('2d');
   }
 
@@ -433,9 +421,76 @@ labelPlacementMethod: "ideal"</pre>
     ]
   };
 
-  var sampleChartContext = getElementIdContext('sampleChart');
-  var sampleChart = new Chart(sampleChartContext).Streamgraph(sampleData, {responsvie: true});
+  var sampleChart = new Chart(ctx('sampleChart')).Streamgraph(sampleData, {responsive: true});
 
+  var verticalPositionChart = new Chart(ctx('verticalPositionChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      colors: ['red', 'orange', 'yellow', 'green', 'rgb(128,128,255)'],
+      colorAssignmentMethod: 'verticalPosition',
+      labelFontColor: 'black',
+      stroke: false
+    });
+
+  var sumChart = new Chart(ctx('sumChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      colors: ['red', 'orange', 'yellow', 'green', 'rgb(128,128,255)'],
+      colorAssignmentMethod: 'sum',
+      labelFontColor: 'black',
+      stroke: false
+    });
+
+
+  var maxHeightChart = new Chart(ctx('maxHeightChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      colors: ['red', 'orange', 'yellow', 'green', 'rgb(128,128,255)'],
+      colorAssignmentMethod: 'maxHeight',
+      labelFontColor: 'black',
+      stroke: false
+    });
+
+  var gradientChart = new Chart(ctx('gradientChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      colors: ['rgb(128,128,255)', 'rgb(64,255,255)'],
+      colorInterpolation: 'gradient',
+    });
+
+  var paletteChart = new Chart(ctx('paletteChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      colors: ['rgb(128,128,255)', 'rgb(64,255,255)'],
+      colorInterpolation: 'palette',
+    });
+
+  var cycleChart = new Chart(ctx('cycleChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      colors: ['rgb(128,128,255)', 'rgb(64,255,255)'],
+      colorInterpolation: 'cycle',
+    });
+
+  var idealChart = new Chart(ctx('idealChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      labelPlacementMethod: 'ideal',
+      labelMinimumSize: 8
+    });
+
+  var maxHeightChart = new Chart(ctx('placementMaxHeightChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      labelPlacementMethod: 'maxHeight'
+    });
+
+
+  var idealMaxHeightChart = new Chart(ctx('idealMaxHeightChart'))
+    .Streamgraph(sampleData, {
+      responsive: true, 
+      labelPlacementMethod: 'idealThenMaxHeight'
+    });
 
 })();
 </script>
