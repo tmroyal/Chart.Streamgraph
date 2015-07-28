@@ -15,6 +15,10 @@
       word-wrap: normal;
       white-space: pre;
     }
+    canvas {
+      width: 100%
+      height: auto
+    }
   </style>
 </head>
 <body>
@@ -24,7 +28,7 @@
       <h1>Chart.Streamgraph</h1>
       <h3>A Streamgraph library and plug-in using Chart.js.</h3>
       <hr>
-      <a class="btn btn-lg btn-primary" href="https://github.com/tmroyal/Chart.Streamgraph/archive/master.zip">Download</a>
+      <a class="btn btn-lg btn-primary" href="https://github.com/tmroyal/Chart.Streamgraph/archive/v0.0.1-alpha.zip">Download</a>
     </div>
 </div>
 
@@ -36,6 +40,7 @@
     </div>
     <div class="col-md-6">
       <h3>Sample</h3>
+      <canvas id="sampleChart" width="500" height="500"></canvas>
     </div>
   </div>
   <hr>
@@ -46,12 +51,12 @@
       <p>This plug-in requires <a href="http://chartjs.org">Chart.js</a></p>
       <h5>Bower</h5>
       <p>The <a href="http://bower.io">Bower</a> package includes Chart.js.</p>
-      <pre>bower install Chart.Streamgraph --save</pre>
+      <pre>bower install Chart.Streamgraph.js</pre>
       <h5>NPM</h5>
       <p>The <a href="https://www.npmjs.com/">NPM</a> package includes Chart.js.</p>
-      <pre>npm install Chart.Streamgraph --save-dev</pre>
+      <pre>npm install chart.streamgraph.js</pre>
       <p>Chart.Streamgraph may be downloaded here: 
-        <a href="https://github.com/tmroyal/Chart.Streamgraph/archive/master.zip">Download</a>
+        <a href="https://github.com/tmroyal/Chart.Streamgraph/archive/v0.0.1-alpha.zip">Download</a>
       </p>
       <p>You may also view the repository directly at 
         <a href="https://github.com/tmroyal/Chart.Streamgraph/">GitHub</a>
@@ -389,6 +394,51 @@ labelPlacementMethod: "ideal"</pre>
   </div>
 
 </div>
+<script src='Chart.Streamgraph.S.js'></script>
+<script>
+(function(){
+  function clone(obj){
+    return JSON.parse(JSON.stringify(obj));
+  }
+
+  function getElementIdContext(elementId){
+    return document.getElementById(elementId).getContext('2d');
+  }
+
+  // completely arbitrary data
+  var sampleData = {
+    labels: ['January', 'Feburary', 'March', 'April', 'May', 'June', 
+             'July', 'August', 'September','October', 'November', 'December' ],
+    datasets: [
+      {
+        label: 'Corn',
+        data: [ 4, 4, 5.5, 4, 7, 12, 14, 9, 6, 5, 2, 1]
+      },
+      {
+        label: 'Wheat',
+        data: [ 8, 2, 1, 0, 0, 0, 1, 3, 8, 12, 11, 10]
+      },
+      {
+        label: 'Rice',
+        data: [0, 1, 2, 2, 3, 4, 3, 2, 2, 3, 0, 0]
+      },
+      {
+        label: 'Rye',
+        data: [0, 0, 0, 0, 0, 0, 2, 5, 9, 6, 5, 1]
+      },
+      {
+        label: 'Oats',
+        data: [0, 3, 2, 3, 6, 3, 4, 1, 2, 4, 8, 2]
+      }
+    ]
+  };
+
+  var sampleChartContext = getElementIdContext('sampleChart');
+  var sampleChart = new Chart(sampleChartContext).Streamgraph(sampleData, {responsvie: true});
+
+
+})();
+</script>
 
 </body>
 </html>
