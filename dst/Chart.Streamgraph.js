@@ -572,9 +572,8 @@ var cssColorParser = function(){
     ctx.font = helpers.fontString(size, options.labelFontStyle, options.labelFontFamily); 
     textWidth = ctx.measureText(layer.label).width;
     
-    while (x+textWidth*2 > graphWidth){
-      x -= textWidth*2;
-      console.log('called', layer.label, x);
+    while (x+textWidth > graphWidth){
+      x -= textWidth;
     }
 
     return x;
