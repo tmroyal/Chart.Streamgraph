@@ -252,7 +252,7 @@
 
   }
 
-  function drawLabel(layer, context, scale, options){
+  function drawLabel(layer, ctx, scale, options){
     var labelLoc;
 
     if (options.labelPlacementMethod === "maxHeight"){
@@ -643,7 +643,7 @@
     labelPlacementMethod: "ideal",
 
     // String - template for multitooltip
-    multiTooltipTemplate: "x:<%= xLabel %>:<%= value %>"
+    multiTooltipTemplate: "x:<%= xLabel %> y:<%= value %>"
 	};
 
 
