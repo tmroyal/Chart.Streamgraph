@@ -698,16 +698,13 @@
             this.hoverIndex = hoverIndex;
             this.draw();
 
-
-            // this ought to be configurable, ie, do we show total?
-            // or current value? if the former, we do not need to more the tooltip
             if(selectedFound && this.options.showTooltips){
               var label = helpers.template(this.options.multiTooltipTemplate, {
                 x: hoverIndex,
                 xLabel: data.labels[hoverIndex],
                 value: roundedTwoDigits(this.layers[hoverStatus].data[hoverIndex].width),
                 sum: roundedTwoDigits(this.layers[hoverStatus].sum),
-                maxWidth: roundedTwoDigits(this.layers[hoverStatus].maxWidth),
+                maxHeight: roundedTwoDigits(this.layers[hoverStatus].maxWidth), 
                 tooltipData: this.layers[hoverStatus].tooltipData
               });
 
