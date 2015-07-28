@@ -15,8 +15,6 @@
       word-wrap: normal;
       white-space: pre;
     }
-    canvas {
-    }
   </style>
 </head>
 <body>
@@ -446,6 +444,27 @@ multiTooltipTemplate: "maxHeight: <%= maxHeight %> | sum: <%= sum %> | xLabel: <
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+      <h3>Scrolling Charts</h3>
+      <p>Chart.Streamgraph has no baked in support for scrolling charts, although
+      this effect can be approximated using <code>overflow-x: scroll</code> with a 
+      chart wider than the enclosing <code>div</code>. In this case, chart options 
+      should be set to <code>responsive: false</code>, and both the size of the enclosing
+      div and the canvas element must be set explicitly.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div style="height: 300px; width: 100%; overflow-x: scroll;">
+        <canvas id="scrollChart" height="300" width="2000"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
       <h3>Bug Reports, Contributing, etc.</h3>
       <p>Bug reports may be placed on the Github repository's 
       <a href="https://github.com/tmroyal/Chart.Streamgraph/issues">
@@ -456,6 +475,7 @@ multiTooltipTemplate: "maxHeight: <%= maxHeight %> | sum: <%= sum %> | xLabel: <
         thomas.m.royal@gmail.com</a> with any questions.</p>
     </div>
   </div>
+
 
 </div>
 
@@ -589,6 +609,8 @@ multiTooltipTemplate: "maxHeight: <%= maxHeight %> | sum: <%= sum %> | xLabel: <
       responsive: true, 
       labelMinimumSize: 35
     });
+
+  var scrollChart = new Chart(ctx('scrollChart')).Streamgraph(sampleData, {responsive: false});
 
 
 })();
